@@ -1,46 +1,412 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Google AdSense Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BrightGuide — Practical guides, beautiful design</title>
+  <meta name="description" content="BrightGuide: long-form how-tos, practical checklists and curated resources. Built responsive and privacy-forward — a demo ready for AdSense review.">
+  <meta name="author" content="BrightGuide Team">
+  <meta name="google-adsense-account" content="ca-pub-4720529185268943">
 
-  <!-- Google AdSense account verification -->
-  <meta name="google-adsense-account" content="ca-pub-4720529185268943" />
-
-  <!-- Google AdSense script -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4720529185268943"
-    crossorigin="anonymous">
+  <!-- JSON-LD Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "BrightGuide",
+    "url": "https://example.com",
+    "logo": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=60",
+    "sameAs": ["https://twitter.com/","https://www.linkedin.com/"]
+  }
   </script>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 40px;
+    /* ---------- Variables ---------- */
+    :root{
+      --bg:#f6fbff; --card:#ffffff; --muted:#6b7280; --accent:#0366d6; --accent-2:#0b79a6;
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1100px; --radius:14px; --shadow:0 10px 30px rgba(12,24,40,0.08);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    .ad-container {
-      margin: 30px auto;
-      max-width: 728px;
-    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#eef7ff);color:#081129;line-height:1.65}
+
+    /* ---------- Header ---------- */
+    header{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:28px 16px 44px}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:800;letter-spacing:0.2px}
+    .nav-links{display:flex;gap:12px}
+    .nav-links a{color:rgba(255,255,255,0.95);text-decoration:none;padding:8px;border-radius:8px}
+    .nav-links a:hover{background:rgba(255,255,255,0.06)}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:18px}
+    .hero h1{font-size:2.25rem;margin:0 0 10px}
+    .hero p{opacity:0.95;margin:0}
+    .hero-cta{display:flex;gap:10px;margin-top:16px}
+    .btn{background:#fff;color:var(--accent);padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.14);color:#fff}
+
+    /* ---------- Cards & Layout ---------- */
+    main{padding:30px 0}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:28px}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .post{padding:22px}
+    .post h2{margin-top:0}
+    .meta{color:var(--muted);font-size:0.92rem;margin-bottom:10px}
+    .post img{width:100%;border-radius:10px;margin:12px 0}
+    .sidebar .widget{margin-bottom:18px}
+
+    /* Typography helpers */
+    h3{margin-bottom:8px}
+    .lead{font-size:1.03rem;color:#123149}
+    ul{margin:0 0 12px 20px}
+    ol{margin-left:20px}
+
+    /* Footer */
+    footer{padding:28px 0;color:var(--muted);font-size:0.95rem}
+    .nav-footer{display:flex;gap:12px;flex-wrap:wrap}
+
+    /* CMP Banner */
+    #cmp-banner{position:fixed;left:16px;right:16px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:14px;justify-content:space-between;padding:14px;border-radius:12px;background:linear-gradient(90deg,rgba(255,255,255,0.96),rgba(245,251,255,0.96));box-shadow:0 8px 30px rgba(2,6,23,0.12)}
+    #cmp-banner p{margin:0;color:#0f172a}
+    .cmp-actions{display:flex;gap:8px}
+
+    /* Responsive */
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.brand{font-size:1rem}}
+    @media(max-width:600px){#cmp-banner{left:10px;right:10px;padding:12px}}
+
+    /* Small utilities */
+    .muted{color:var(--muted)}
+    .small{font-size:0.9rem}
+    a.inline{color:var(--accent);text-decoration:none}
+
+    /* Accessibility focus styles */
+    a:focus, button:focus, input:focus{outline:3px solid rgba(3,102,214,0.18);outline-offset:2px}
+
   </style>
 </head>
 <body>
-  <h1>Google AdSense Test Page</h1>
-  <p>If your site is approved, an ad should appear below:</p>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">BrightGuide</div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#articles">Articles</a>
+          <a href="#about">About</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
 
-  <div class="ad-container">
-    <!-- Responsive Ad Unit -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4720529185268943"
-         data-ad-slot="1234567890" <!-- Replace with your real Ad Slot ID -->
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+      <div class="hero">
+        <div>
+          <h1>Original, long-form how-tos and practical checklists — designed for readers</h1>
+          <p class="lead">This demo shows the layout, content depth and trust pages Google looks for during AdSense review: multiple full-length articles, Privacy Policy, Contact, About and clear navigation.</p>
+
+          <div class="hero-cta">
+            <button class="btn" onclick="document.getElementById('articles').scrollIntoView({behavior:'smooth'})">Read latest articles</button>
+            <a class="btn btn-outline" href="#contact">Contact us</a>
+          </div>
+        </div>
+
+        <aside class="card" aria-label="Site snapshot">
+          <strong>Site snapshot</strong>
+          <p class="muted small">3+ long articles • Privacy page • Contact form • Responsive & accessible</p>
+          <div style="height:220px;background-image:url('https://images.unsplash.com/photo-1508747703725-71968aa76127?auto=format&fit=crop&w=1200&q=60');background-size:cover;border-radius:10px;margin-top:12px"></div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <div class="grid">
+      <section>
+        <div class="card" id="articles">
+
+          <!-- ------------ Article A ------------ -->
+          <article class="post" id="post-1">
+            <h2>How to Build a Morning Routine That Actually Sticks</h2>
+            <p class="meta">Published July 2, 2025 • ~1,200 words • 8 min read</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?auto=format&fit=crop&w=1400&q=70" alt="person stretching at sunrise">
+
+            <p><strong>Introduction —</strong> A reliable morning routine reduces decision fatigue and sets your day for wins. This guide synthesizes research and realistic habit design into an actionable 21-day plan you can follow.</p>
+
+            <h3>Why routines work</h3>
+            <p>Habits automate decisions: when we place cues, rewards and small repetition together, behavior becomes effortless. Routines are the scaffolding that preserve willpower for important tasks.</p>
+
+            <h3>Practical blueprint</h3>
+            <p>Below is a compact blueprint you can adapt. The goal: 30–60 minutes of rituals that set your energy, focus and mood.</p>
+
+            <ul>
+              <li><strong>Consistent wake window:</strong> Keep wake time ±30 minutes.</li>
+              <li><strong>Hydrate + light:</strong> 250–500ml water and 10 minutes of daylight.</li>
+              <li><strong>Movement:</strong> 10–20 minutes of mobility or brisk walk.</li>
+              <li><strong>Micro-work sprint:</strong> 25 minutes focused work (Pomodoro) to start momentum.</li>
+              <li><strong>Reflection:</strong> 3 minute journal or gratitude note.</li>
+            </ul>
+
+            <h3>21-day progression plan</h3>
+            <p><em>Week 1:</em> wake at same time, hydrate, 5-minute stretch, quick planning. <em>Week 2:</em> add a 15-minute walk and 10 minutes reading. <em>Week 3:</em> add a 25-minute focused sprint and short journaling.</p>
+
+            <p>Track outcomes with a simple table (mood, focus, sleep) and iterate each week. The small wins compound.</p>
+
+            <hr>
+
+            <!-- ------------ Article B ------------ -->
+            <h2 id="post-2">Complete Beginner’s Guide to Hosting a Small Website (2025)</h2>
+            <p class="meta">Published June 18, 2025 • ~1,400 words • 10 min read</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=70" alt="hosting server and laptop">
+
+            <p>Launching a site is simpler than it seems. This guide explains domain choices, hosting tiers and a deployment checklist so your content-focused site is fast, secure and review-ready for AdSense.</p>
+
+            <h3>Choose a domain & host</h3>
+            <p>Short memorable domains work best. For low-cost options, shared hosting is fine; for performance and simplicity static hosting (Netlify, Vercel) with a CMS works great for content sites.</p>
+
+            <h3>Content required for AdSense review</h3>
+            <ol>
+              <li>At least 8–12 unique, long-form pages (600–1500 words each).</li>
+              <li>About page describing authorship and purpose.</li>
+              <li>Full Privacy Policy and Contact page.</li>
+              <li>Clear navigation & mobile-friendly layout.</li>
+            </ol>
+
+            <p>Upload original images (Unsplash or your own). Avoid placeholder text and thin, auto-generated pages.</p>
+
+            <hr>
+
+            <!-- ------------ Article C ------------ -->
+            <h2 id="post-3">Smart Content Tips to Make Your Site Valuable (SEO & Readers)</h2>
+            <p class="meta">Published May 12, 2025 • ~900 words • 7 min read</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1400&q=70" alt="content strategy workspace">
+
+            <p>High-quality content is the central factor for both Google Search and AdSense approval. Below are practical strategies to improve content depth and usefulness.</p>
+
+            <h3>Original research and examples</h3>
+            <p>Add case studies, real steps you used, and screenshots. If you provide new or better instructions than existing pages, reviewers (and readers) notice.</p>
+
+            <h3>Multimedia & downloads</h3>
+            <p>Use original images, diagrams, or a small downloadable PDF (checklist). Hosting a downloadable asset increases perceived value.</p>
+
+            <p style="margin-top:14px"><strong>Quick checklist for each article:</strong> unique title, H1/H2 structure, at least 600 words, at least one image, and an internal link to another page.</p>
+
+          </article>
+
+          <!-- ------------ Extra content to show depth ------------ -->
+          <article class="post" aria-label="Extra resources">
+            <h3>Templates & resources</h3>
+            <p class="muted small">Quick, copyable templates to use in your site:</p>
+            <h4>1. Contact email template</h4>
+            <pre style="background:#f3f8ff;border-radius:8px;padding:10px;overflow:auto">Hello [Name],
+
+Thanks for reaching out — we received your message and will reply within 48 hours.
+
+Best,
+BrightGuide Team</pre>
+
+            <h4>2. Article outline template</h4>
+            <pre style="background:#f3f8ff;border-radius:8px;padding:10px;overflow:auto">Title
+Intro (100-150 words)
+H2 — Problem
+H2 — Solution (step-by-step)
+H2 — Examples / Case study
+Conclusion / Checklist</pre>
+
+            <p class="muted small">Add these templates as hidden page content to demonstrate editorial planning during review.</p>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="widget card">
+          <h4>About BrightGuide</h4>
+          <p class="muted small">We publish how-tos and practical guides. Our goal is to deliver useful content in readable, focused formats.</p>
+        </div>
+
+        <div class="widget card">
+          <h4>Popular posts</h4>
+          <ul>
+            <li><a href="#post-2" class="inline">Beginner’s Guide to Hosting</a></li>
+            <li><a href="#post-1" class="inline">Morning Routine That Sticks</a></li>
+            <li><a href="#post-3" class="inline">Smart Content Tips</a></li>
+          </ul>
+        </div>
+
+        <div class="widget card">
+          <h4>Subscribe</h4>
+          <p class="muted small">Weekly guides & templates. No spam.</p>
+          <form onsubmit="alert('Demo: implement backend to capture emails');return false">
+            <input type="email" placeholder="you@example.com" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef6;margin-bottom:8px">
+            <button class="btn" style="width:100%">Subscribe</button>
+          </form>
+        </div>
+
+        <div class="widget card">
+          <h4>Quick links</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#sitemap">Sitemap</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- About -->
+    <section id="about" style="margin-top:28px">
+      <div class="card">
+        <h3>About</h3>
+        <p>BrightGuide is a demo editorial site focused on practical, original content. We emphasize accessible design, honest authorship and useful, actionable writing.</p>
+        <p class="muted small">Author: BrightGuide Team — contact: <a href="mailto:hello@example.com">hello@example.com</a></p>
+      </div>
+    </section>
+
+    <!-- Privacy policy -->
+    <section id="privacy" style="margin-top:22px">
+      <div class="card">
+        <h3>Privacy Policy</h3>
+        <p>Effective date: July 1, 2025</p>
+        <p>BrightGuide respects your privacy. This page explains what data we collect, how we use it, and your choices regarding cookies and tracking.</p>
+
+        <h4>Information we collect</h4>
+        <p>We collect information you provide (like emails for newsletters) and non-personal analytics (page views, device type) using standard analytics tools. We do not sell personal data.</p>
+
+        <h4>Cookies & advertising</h4>
+        <p>We may use cookies for site functionality and analytics. If we enable advertising (e.g., AdSense), third-party ad providers may set cookies — those are controlled by the provider. For users in the EEA/UK/Switzerland we will show a consent banner allowing users to accept or manage ad personalization.</p>
+
+        <h4>Choices and controls</h4>
+        <p>You can manage cookies and trackers via the consent manager available on this site. You can also use your browser settings to block cookies or use tracker-blocking extensions.</p>
+
+        <h4>Contact</h4>
+        <p>If you have privacy questions, email privacy@example.com</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="margin-top:22px">
+      <div class="card">
+        <h3>Contact</h3>
+        <p class="muted small">Have questions? Fill the form below or email <a href="mailto:hello@example.com">hello@example.com</a>.</p>
+
+        <form onsubmit="alert('Demo only — implement a backend to receive messages');return false">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input required placeholder="Your name" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6eef6">
+            <input required type="email" placeholder="Email" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6eef6">
+          </div>
+          <textarea required placeholder="Message" style="width:100%;margin-top:10px;padding:12px;border-radius:8px;border:1px solid #e6eef6"></textarea>
+          <button class="btn" style="margin-top:8px">Send message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Sitemap (helps reviewers) -->
+    <section id="sitemap" style="margin-top:22px">
+      <div class="card">
+        <h3>Sitemap</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#post-1">Morning Routine</a></li>
+          <li><a href="#post-2">Hosting Guide</a></li>
+          <li><a href="#post-3">Content Tips</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+      <div>
+        <strong>BrightGuide</strong>
+        <div class="muted small">Helpful long-form guides • Built for quality</div>
+      </div>
+      <div class="nav-footer">
+        <a href="#privacy">Privacy</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <p style="margin-top:16px;color:var(--muted);font-size:0.9rem">© 2025 BrightGuide — Demo template for AdSense-ready testing. Do not enable ad units until you apply and are approved.</p>
+  </footer>
+
+  <!-- ---------- Consent Manager (two-choice) ---------- -->
+  <div id="cmp-banner" role="region" aria-label="Cookie consent" style="display:none">
+    <div style="flex:1">
+      <p style="margin:0"><strong>BrightGuide uses cookies</strong> — we and our partners use cookies for analytics and personalised content. By clicking "Accept" you consent to personalized ads in supported regions. You can Manage your preferences instead.</p>
+    </div>
+    <div class="cmp-actions">
+      <button id="cmp-manage" class="btn btn-outline">Manage</button>
+      <button id="cmp-accept" class="btn">Accept</button>
+    </div>
   </div>
+
+  <!-- CMP modal (simple demo) -->
+  <div id="cmp-modal" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:10000;align-items:center;justify-content:center">
+    <div style="background:#fff;border-radius:12px;max-width:720px;padding:18px;margin:20px;box-shadow:var(--shadow)">
+      <h3 style="margin-top:0">Manage cookie preferences</h3>
+      <p class="muted small">Toggle ad personalization and analytics. This is a demo consent manager — for production use a Google-certified CMP if required by your region.</p>
+      <div style="display:flex;gap:12px;flex-direction:column;margin-top:12px">
+        <label><input id="pref-ads" type="checkbox" checked> Personalised ads</label>
+        <label><input id="pref-analytics" type="checkbox" checked> Analytics</label>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button id="cmp-save" class="btn btn-outline">Save</button>
+        <button id="cmp-close" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple two-choice CMP behaviour for demo/testing (not a certified CMP)
+    (function(){
+      const banner = document.getElementById('cmp-banner');
+      const modal = document.getElementById('cmp-modal');
+      const accept = document.getElementById('cmp-accept');
+      const manage = document.getElementById('cmp-manage');
+      const close = document.getElementById('cmp-close');
+      const save = document.getElementById('cmp-save');
+
+      function showBanner(){
+        // Only show if no consent stored
+        if(!localStorage.getItem('bg_consent')){
+          banner.style.display = 'flex';
+        }
+      }
+
+      accept.addEventListener('click', ()=>{
+        localStorage.setItem('bg_consent', JSON.stringify({ads:true,analytics:true,ts:Date.now()}));
+        banner.style.display = 'none';
+        // In production: enable ad network scripts here when consent granted
+        alert('Consent saved (demo). In a real site, ad networks would now be allowed to run.');
+      });
+
+      manage.addEventListener('click', ()=>{ modal.style.display = 'flex'; });
+      close.addEventListener('click', ()=>{ modal.style.display = 'none'; });
+
+      save.addEventListener('click', ()=>{
+        const ads = document.getElementById('pref-ads').checked;
+        const analytics = document.getElementById('pref-analytics').checked;
+        localStorage.setItem('bg_consent', JSON.stringify({ads:ads,analytics:analytics,ts:Date.now()}));
+        modal.style.display = 'none';
+        banner.style.display = 'none';
+        alert('Preferences saved (demo).');
+      });
+
+      // Show banner on load
+      document.addEventListener('DOMContentLoaded', showBanner);
+    })();
+  </script>
+
+  <!-- NOTE: Do NOT place live AdSense ad units on pages before applying and being approved. If you add ad units prematurely, Google may reevaluate pages. Keep client meta for verification, but only add <ins class="adsbygoogle"> units after approval. -->
 </body>
 </html>
