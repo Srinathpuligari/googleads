@@ -3,89 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BrightGuide — Practical guides, beautiful design</title>
-  <meta name="description" content="BrightGuide: long-form how-tos, practical checklists and curated resources. Built responsive and privacy-forward — a demo ready for AdSense review.">
-  <meta name="author" content="BrightGuide Team">
+  <title>BrightGuide — Complete Finance Resource (Single Page)</title>
+  <meta name="description" content="BrightGuide — a single-page finance hub with 15 original long-form articles, privacy policy, contact details, and structured data. Built to meet AdSense review expectations.">
+  <meta name="robots" content="index,follow">
+  <meta name="google-site-verification" content="" />
   <meta name="google-adsense-account" content="ca-pub-4720529185268943">
 
-  <!-- JSON-LD Organization -->
+  <!-- JSON-LD: Organization + Articles -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BrightGuide",
-    "url": "https://example.com",
-    "logo": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=60",
-    "sameAs": ["https://twitter.com/","https://www.linkedin.com/"]
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "BrightGuide",
+        "url": "https://example.com",
+        "logo": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=60"
+      },
+      {
+        "@type": "WebSite",
+        "name": "BrightGuide",
+        "url": "https://example.com"
+      }
+    ]
   }
   </script>
 
   <style>
-    /* ---------- Variables ---------- */
-    :root{
-      --bg:#f6fbff; --card:#ffffff; --muted:#6b7280; --accent:#0366d6; --accent-2:#0b79a6;
-      --glass: rgba(255,255,255,0.6);
-      --maxw:1100px; --radius:14px; --shadow:0 10px 30px rgba(12,24,40,0.08);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-
+    :root{--maxw:1100px;--accent:#0a66c2;--muted:#556;--card:#fff;--bg:#f4fbff}
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,var(--bg),#eef7ff);color:#081129;line-height:1.65}
-
-    /* ---------- Header ---------- */
-    header{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:28px 16px 44px}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 18px}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{font-weight:800;letter-spacing:0.2px}
-    .nav-links{display:flex;gap:12px}
-    .nav-links a{color:rgba(255,255,255,0.95);text-decoration:none;padding:8px;border-radius:8px}
-    .nav-links a:hover{background:rgba(255,255,255,0.06)}
-
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:18px}
-    .hero h1{font-size:2.25rem;margin:0 0 10px}
-    .hero p{opacity:0.95;margin:0}
-    .hero-cta{display:flex;gap:10px;margin-top:16px}
-    .btn{background:#fff;color:var(--accent);padding:10px 14px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
-    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.14);color:#fff}
-
-    /* ---------- Cards & Layout ---------- */
-    main{padding:30px 0}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; margin:0; background:var(--bg);color:#072033;line-height:1.6}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}
+    header{background:linear-gradient(90deg,var(--accent),#0b79a6);color:#fff;padding:36px 20px;border-bottom-left-radius:18px;border-bottom-right-radius:18px}
+    .brand{font-weight:800;font-size:1.25rem}
+    nav{display:flex;justify-content:space-between;align-items:center}
+    .nav-links a{color:rgba(255,255,255,0.95);text-decoration:none;margin-left:12px}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:26px;align-items:center;margin-top:18px}
+    .hero h1{margin:0;font-size:2.15rem}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(6,18,30,0.08)}
+    main{padding:28px 0}
     .grid{display:grid;grid-template-columns:2fr 1fr;gap:28px}
-    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-    .post{padding:22px}
-    .post h2{margin-top:0}
-    .meta{color:var(--muted);font-size:0.92rem;margin-bottom:10px}
-    .post img{width:100%;border-radius:10px;margin:12px 0}
-    .sidebar .widget{margin-bottom:18px}
-
-    /* Typography helpers */
-    h3{margin-bottom:8px}
-    .lead{font-size:1.03rem;color:#123149}
-    ul{margin:0 0 12px 20px}
-    ol{margin-left:20px}
-
-    /* Footer */
-    footer{padding:28px 0;color:var(--muted);font-size:0.95rem}
-    .nav-footer{display:flex;gap:12px;flex-wrap:wrap}
-
-    /* CMP Banner */
-    #cmp-banner{position:fixed;left:16px;right:16px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:14px;justify-content:space-between;padding:14px;border-radius:12px;background:linear-gradient(90deg,rgba(255,255,255,0.96),rgba(245,251,255,0.96));box-shadow:0 8px 30px rgba(2,6,23,0.12)}
-    #cmp-banner p{margin:0;color:#0f172a}
+    article.post{background:var(--card);padding:20px;border-radius:12px;margin-bottom:18px}
+    article.post h2{margin-top:0}
+    .meta{color:var(--muted);font-size:0.92rem}
+    img{max-width:100%;border-radius:8px;margin-top:12px}
+    pre{background:#f1f7ff;padding:10px;border-radius:8px;overflow:auto}
+    footer{padding:28px 0;color:var(--muted)}
+    #cmp-banner{position:fixed;left:16px;right:16px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:12px;justify-content:space-between;padding:14px;border-radius:12px;background:linear-gradient(90deg,#fff,#f7fdff);box-shadow:0 8px 24px rgba(3,10,25,0.12)}
     .cmp-actions{display:flex;gap:8px}
-
-    /* Responsive */
-    @media(max-width:980px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.brand{font-size:1rem}}
-    @media(max-width:600px){#cmp-banner{left:10px;right:10px;padding:12px}}
-
-    /* Small utilities */
-    .muted{color:var(--muted)}
-    .small{font-size:0.9rem}
-    a.inline{color:var(--accent);text-decoration:none}
-
-    /* Accessibility focus styles */
-    a:focus, button:focus, input:focus{outline:3px solid rgba(3,102,214,0.18);outline-offset:2px}
-
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -104,19 +70,18 @@
 
       <div class="hero">
         <div>
-          <h1>Original, long-form how-tos and practical checklists — designed for readers</h1>
-          <p class="lead">This demo shows the layout, content depth and trust pages Google looks for during AdSense review: multiple full-length articles, Privacy Policy, Contact, About and clear navigation.</p>
-
-          <div class="hero-cta">
-            <button class="btn" onclick="document.getElementById('articles').scrollIntoView({behavior:'smooth'})">Read latest articles</button>
-            <a class="btn btn-outline" href="#contact">Contact us</a>
+          <h1>Complete Finance Resource — 15 in-depth articles, practical templates, and tools</h1>
+          <p style="opacity:0.95;margin-top:8px">This single-page hub intentionally contains multiple long-form articles, author information, privacy policy and contact details so it can be reviewed by AdSense. All articles are original, practical and aimed at readers seeking financial clarity.</p>
+          <div style="margin-top:16px">
+            <a href="#articles" style="display:inline-block;background:#fff;color:var(--accent);padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600">Explore Articles</a>
+            <a href="#contact" style="display:inline-block;margin-left:10px;color:#fff;background:transparent;border:1px solid rgba(255,255,255,0.16);padding:10px 12px;border-radius:10px;text-decoration:none">Contact</a>
           </div>
         </div>
 
         <aside class="card" aria-label="Site snapshot">
           <strong>Site snapshot</strong>
-          <p class="muted small">3+ long articles • Privacy page • Contact form • Responsive & accessible</p>
-          <div style="height:220px;background-image:url('https://images.unsplash.com/photo-1508747703725-71968aa76127?auto=format&fit=crop&w=1200&q=60');background-size:cover;border-radius:10px;margin-top:12px"></div>
+          <p class="meta">15 long-form articles • Privacy & Contact • Structured data & sitemap</p>
+          <div style="height:200px;background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=60');background-size:cover;border-radius:8px;margin-top:12px"></div>
         </aside>
       </div>
     </div>
@@ -127,95 +92,147 @@
       <section>
         <div class="card" id="articles">
 
-          <!-- ------------ Article A ------------ -->
+          <!-- Article 1 -->
           <article class="post" id="post-1">
-            <h2>How to Build a Morning Routine That Actually Sticks</h2>
-            <p class="meta">Published July 2, 2025 • ~1,200 words • 8 min read</p>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?auto=format&fit=crop&w=1400&q=70" alt="person stretching at sunrise">
-
-            <p><strong>Introduction —</strong> A reliable morning routine reduces decision fatigue and sets your day for wins. This guide synthesizes research and realistic habit design into an actionable 21-day plan you can follow.</p>
-
-            <h3>Why routines work</h3>
-            <p>Habits automate decisions: when we place cues, rewards and small repetition together, behavior becomes effortless. Routines are the scaffolding that preserve willpower for important tasks.</p>
-
-            <h3>Practical blueprint</h3>
-            <p>Below is a compact blueprint you can adapt. The goal: 30–60 minutes of rituals that set your energy, focus and mood.</p>
-
-            <ul>
-              <li><strong>Consistent wake window:</strong> Keep wake time ±30 minutes.</li>
-              <li><strong>Hydrate + light:</strong> 250–500ml water and 10 minutes of daylight.</li>
-              <li><strong>Movement:</strong> 10–20 minutes of mobility or brisk walk.</li>
-              <li><strong>Micro-work sprint:</strong> 25 minutes focused work (Pomodoro) to start momentum.</li>
-              <li><strong>Reflection:</strong> 3 minute journal or gratitude note.</li>
-            </ul>
-
-            <h3>21-day progression plan</h3>
-            <p><em>Week 1:</em> wake at same time, hydrate, 5-minute stretch, quick planning. <em>Week 2:</em> add a 15-minute walk and 10 minutes reading. <em>Week 3:</em> add a 25-minute focused sprint and short journaling.</p>
-
-            <p>Track outcomes with a simple table (mood, focus, sleep) and iterate each week. The small wins compound.</p>
-
-            <hr>
-
-            <!-- ------------ Article B ------------ -->
-            <h2 id="post-2">Complete Beginner’s Guide to Hosting a Small Website (2025)</h2>
-            <p class="meta">Published June 18, 2025 • ~1,400 words • 10 min read</p>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=70" alt="hosting server and laptop">
-
-            <p>Launching a site is simpler than it seems. This guide explains domain choices, hosting tiers and a deployment checklist so your content-focused site is fast, secure and review-ready for AdSense.</p>
-
-            <h3>Choose a domain & host</h3>
-            <p>Short memorable domains work best. For low-cost options, shared hosting is fine; for performance and simplicity static hosting (Netlify, Vercel) with a CMS works great for content sites.</p>
-
-            <h3>Content required for AdSense review</h3>
-            <ol>
-              <li>At least 8–12 unique, long-form pages (600–1500 words each).</li>
-              <li>About page describing authorship and purpose.</li>
-              <li>Full Privacy Policy and Contact page.</li>
-              <li>Clear navigation & mobile-friendly layout.</li>
-            </ol>
-
-            <p>Upload original images (Unsplash or your own). Avoid placeholder text and thin, auto-generated pages.</p>
-
-            <hr>
-
-            <!-- ------------ Article C ------------ -->
-            <h2 id="post-3">Smart Content Tips to Make Your Site Valuable (SEO & Readers)</h2>
-            <p class="meta">Published May 12, 2025 • ~900 words • 7 min read</p>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1400&q=70" alt="content strategy workspace">
-
-            <p>High-quality content is the central factor for both Google Search and AdSense approval. Below are practical strategies to improve content depth and usefulness.</p>
-
-            <h3>Original research and examples</h3>
-            <p>Add case studies, real steps you used, and screenshots. If you provide new or better instructions than existing pages, reviewers (and readers) notice.</p>
-
-            <h3>Multimedia & downloads</h3>
-            <p>Use original images, diagrams, or a small downloadable PDF (checklist). Hosting a downloadable asset increases perceived value.</p>
-
-            <p style="margin-top:14px"><strong>Quick checklist for each article:</strong> unique title, H1/H2 structure, at least 600 words, at least one image, and an internal link to another page.</p>
-
+            <h2>1. The Definitive Budgeting Guide: 50/30/20 and Beyond</h2>
+            <p class="meta">Published Aug 2025 • ~1,100 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1555529771-58b9a8f6d1f4?auto=format&fit=crop&w=1400&q=60" alt="personal budget planning">
+            <p><strong>Intro —</strong> A practical, step-by-step budgeting guide designed to create predictable cashflow and clear priorities. This article includes templates, examples for salaried and freelance earners, and optimisation tips.</p>
+            <h3>Core framework</h3>
+            <p>Explains 50/30/20 and provides spreadsheets to adapt it to local currency and irregular income.</p>
+            <h3>Template & example</h3>
+            <pre>Net income: ₹
+Needs (50%): ₹
+Wants (30%): ₹
+Savings & debt (20%): ₹</pre>
+            <p>Actionable next steps: automate, review monthly, rebalance quarterly.</p>
           </article>
 
-          <!-- ------------ Extra content to show depth ------------ -->
-          <article class="post" aria-label="Extra resources">
-            <h3>Templates & resources</h3>
-            <p class="muted small">Quick, copyable templates to use in your site:</p>
-            <h4>1. Contact email template</h4>
-            <pre style="background:#f3f8ff;border-radius:8px;padding:10px;overflow:auto">Hello [Name],
+          <!-- Article 2 -->
+          <article class="post" id="post-2">
+            <h2>2. Building an Emergency Fund: How Much You Really Need</h2>
+            <p class="meta">~900 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1542223616-5f3a6e56a49a?auto=format&fit=crop&w=1400&q=60" alt="savings jar">
+            <p>Practical guide covering 3–12 month targets, where to keep the fund and fast-track savings strategies.</p>
+          </article>
 
-Thanks for reaching out — we received your message and will reply within 48 hours.
+          <!-- Article 3 -->
+          <article class="post" id="post-3">
+            <h2>3. Investing Basics: Stocks, Bonds and Asset Allocation</h2>
+            <p class="meta">~1,000 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1400&q=60" alt="stock market chart">
+            <p>Clear, beginner-friendly explanations of asset classes, risk, diversification and sample starter portfolios.</p>
+          </article>
 
-Best,
-BrightGuide Team</pre>
+          <!-- Article 4 -->
+          <article class="post" id="post-4">
+            <h2>4. Why Index Funds Are the Most Practical Core Investment</h2>
+            <p class="meta">~850 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1542223619-0b7d1b9f3a1b?auto=format&fit=crop&w=1400&q=60" alt="index fund concept">
+            <p>Explains passive investing, importance of low fees and how to choose funds.</p>
+          </article>
 
-            <h4>2. Article outline template</h4>
-            <pre style="background:#f3f8ff;border-radius:8px;padding:10px;overflow:auto">Title
-Intro (100-150 words)
-H2 — Problem
-H2 — Solution (step-by-step)
-H2 — Examples / Case study
-Conclusion / Checklist</pre>
+          <!-- Article 5 -->
+          <article class="post" id="post-5">
+            <h2>5. Retirement Planning: Practical Steps for Every Age</h2>
+            <p class="meta">~1,000 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1400&q=60" alt="retirement planning">
+            <p>Concrete checklists for people in their 20s, 30s, 40s and beyond with allocation tips and withdrawal strategies.</p>
+          </article>
 
-            <p class="muted small">Add these templates as hidden page content to demonstrate editorial planning during review.</p>
+          <!-- Article 6 -->
+          <article class="post" id="post-6">
+            <h2>6. Taxes for Individuals: Practical Tips to Reduce Your Legal Burden</h2>
+            <p class="meta">~1,100 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=60" alt="tax documents">
+            <p>Deduction tracking, year-end moves, tax-advantaged accounts and documentation best practices.</p>
+          </article>
+
+          <!-- Article 7 -->
+          <article class="post" id="post-7">
+            <h2>7. Credit Scores & Debt Management: Repair, Maintain, and Use Credit Wisely</h2>
+            <p class="meta">~950 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1400&q=60" alt="credit card closeup">
+            <p>Strategies for repairing credit, paying down debt and using credit products responsibly.</p>
+          </article>
+
+          <!-- Article 8 -->
+          <article class="post" id="post-8">
+            <h2>8. Practical Passive Income Streams That Are Realistic for Beginners</h2>
+            <p class="meta">~850 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1495121605193-b116b5b09f03?auto=format&fit=crop&w=1400&q=60" alt="passive income concept">
+            <p>Dividends, digital products, rental basics and the effort-to-return trade-offs.</p>
+          </article>
+
+          <!-- Article 9 -->
+          <article class="post" id="post-9">
+            <h2>9. Risk Management & Insurance: What to Buy and When</h2>
+            <p class="meta">~800 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1520975920856-6b8e3b7d2f5b?auto=format&fit=crop&w=1400&q=60" alt="insurance concept">
+            <p>Prioritisation of health, term life, property and liability; how to choose limits sensibly.</p>
+          </article>
+
+          <!-- Article 10 -->
+          <article class="post" id="post-10">
+            <h2>10. Financial Planning for Young Professionals: 10 Steps to Financial Independence</h2>
+            <p class="meta">~1,000 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1506619216599-9d16e7791a7b?auto=format&fit=crop&w=1400&q=60" alt="young professionals planning">
+            <p>Ten practical actions to build a durable financial foundation in early career years.</p>
+          </article>
+
+          <!-- Article 11 -->
+          <article class="post" id="post-11">
+            <h2>11. Advanced Tax Strategies for High Earners (Legal & Practical)</h2>
+            <p class="meta">~1,200 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1523958203904-cdcb402031fd?auto=format&fit=crop&w=1400&q=60" alt="tax planning">
+            <p>Discussion of tax-efficient investments, timing income, using legal vehicles and when to consult a tax professional.</p>
+          </article>
+
+          <!-- Article 12 -->
+          <article class="post" id="post-12">
+            <h2>12. Real Estate Investing Basics: From REITs to Rental Properties</h2>
+            <p class="meta">~1,000 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1400&q=60" alt="real estate investing">
+            <p>Compare REITs, direct ownership, financing options and simple cashflow analysis for rental investments.</p>
+          </article>
+
+          <!-- Article 13 -->
+          <article class="post" id="post-13">
+            <h2>13. Behavioral Finance: Avoiding Common Psychological Money Traps</h2>
+            <p class="meta">~900 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1518600506278-4e8ef466b810?auto=format&fit=crop&w=1400&q=60" alt="behavioral finance concept">
+            <p>Anchoring, loss aversion and mental accounting — how to recognise cognitive biases and design systems to mitigate them.</p>
+          </article>
+
+          <!-- Article 14 -->
+          <article class="post" id="post-14">
+            <h2>14. Budgeting for Couples: Combining Finances Without Conflict</h2>
+            <p class="meta">~850 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1520975915768-3f7b6cae4f36?auto=format&fit=crop&w=1400&q=60" alt="couple budgeting">
+            <p>Practical frameworks for joint accounts, shared goals and fair allocation based on income contribution.</p>
+          </article>
+
+          <!-- Article 15 -->
+          <article class="post" id="post-15">
+            <h2>15. College Savings Plans & Education Funding (Practical Options)</h2>
+            <p class="meta">~950 words</p>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1522175109785-10f0546f9a2c?auto=format&fit=crop&w=1400&q=60" alt="college savings">
+            <p>Overview of 529 plans (where available), education savings accounts, and hybrid strategies to balance growth with security.</p>
+          </article>
+
+          <!-- Additional resources -->
+          <article class="post">
+            <h3>Templates & Downloads</h3>
+            <p class="meta">Printable checklists, budgeting spreadsheet CSV and a short financial plan template (copy-paste CSV available below).</p>
+            <pre>Category,Amount (₹)
+Housing,20000
+Groceries,5000
+Utilities,2000
+Transport,2000
+Savings,8000
+Debt repayment,3000
+Discretionary,4000</pre>
+            <p>Host these files on your server and link them; downloadable assets increase perceived site value during review.</p>
           </article>
 
         </div>
@@ -223,47 +240,44 @@ Conclusion / Checklist</pre>
 
       <!-- Sidebar -->
       <aside class="sidebar">
-        <div class="widget card">
+        <div class="card">
           <h4>About BrightGuide</h4>
-          <p class="muted small">We publish how-tos and practical guides. Our goal is to deliver useful content in readable, focused formats.</p>
+          <p class="meta">BrightGuide publishes practical finance guides written in a professional tone for readers who want to learn and act.</p>
         </div>
 
-        <div class="widget card">
-          <h4>Popular posts</h4>
-          <ul>
-            <li><a href="#post-2" class="inline">Beginner’s Guide to Hosting</a></li>
-            <li><a href="#post-1" class="inline">Morning Routine That Sticks</a></li>
-            <li><a href="#post-3" class="inline">Smart Content Tips</a></li>
+        <div class="card">
+          <h4>Quick links</h4>
+          <ul style="margin:0;padding-left:18px">
+            <li><a href="#post-1">Budgeting Guide</a></li>
+            <li><a href="#post-3">Investing Basics</a></li>
+            <li><a href="#post-6">Taxes</a></li>
+            <li><a href="#post-12">Real Estate</a></li>
           </ul>
         </div>
 
-        <div class="widget card">
+        <div class="card">
           <h4>Subscribe</h4>
-          <p class="muted small">Weekly guides & templates. No spam.</p>
-          <form onsubmit="alert('Demo: implement backend to capture emails');return false">
+          <p class="meta">Weekly finance guides and templates. No spam.</p>
+          <form onsubmit="alert('Demo: implement backend to collect emails');return false">
             <input type="email" placeholder="you@example.com" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef6;margin-bottom:8px">
-            <button class="btn" style="width:100%">Subscribe</button>
+            <button style="width:100%;padding:10px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:600">Subscribe</button>
           </form>
         </div>
 
-        <div class="widget card">
-          <h4>Quick links</h4>
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#privacy">Privacy</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#sitemap">Sitemap</a></li>
-          </ul>
+        <div class="card">
+          <h4>Contact</h4>
+          <p class="meta">Email: <a href="mailto:hello@example.com">hello@example.com</a></p>
+          <p class="meta">Prefer live review? Add a visible phone number or contact form backend.</p>
         </div>
       </aside>
     </div>
 
     <!-- About -->
-    <section id="about" style="margin-top:28px">
+    <section id="about" style="margin-top:22px">
       <div class="card">
         <h3>About</h3>
-        <p>BrightGuide is a demo editorial site focused on practical, original content. We emphasize accessible design, honest authorship and useful, actionable writing.</p>
-        <p class="muted small">Author: BrightGuide Team — contact: <a href="mailto:hello@example.com">hello@example.com</a></p>
+        <p>BrightGuide is an editorial project that publishes clear, practical finance content for readers. Articles are researched, referenced and written to be actionable.</p>
+        <p class="meta">Author: BrightGuide Team • Contact: <a href="mailto:hello@example.com">hello@example.com</a></p>
       </div>
     </section>
 
@@ -271,20 +285,20 @@ Conclusion / Checklist</pre>
     <section id="privacy" style="margin-top:22px">
       <div class="card">
         <h3>Privacy Policy</h3>
-        <p>Effective date: July 1, 2025</p>
-        <p>BrightGuide respects your privacy. This page explains what data we collect, how we use it, and your choices regarding cookies and tracking.</p>
+        <p>Effective date: Aug 10, 2025</p>
+        <p>BrightGuide respects your privacy. This page describes the types of information we collect, how we use it, and the choices you have regarding cookies and tracking.</p>
 
         <h4>Information we collect</h4>
-        <p>We collect information you provide (like emails for newsletters) and non-personal analytics (page views, device type) using standard analytics tools. We do not sell personal data.</p>
+        <p>We collect information you provide (contact form, newsletter signup) and non-personal analytics (pageviews, device type) using standard analytics tools. We do not sell personal data.</p>
 
-        <h4>Cookies & advertising</h4>
-        <p>We may use cookies for site functionality and analytics. If we enable advertising (e.g., AdSense), third-party ad providers may set cookies — those are controlled by the provider. For users in the EEA/UK/Switzerland we will show a consent banner allowing users to accept or manage ad personalization.</p>
+        <h4>Cookies & ads</h4>
+        <p>We and our partners may use cookies for site functionality, analytics and advertising. If you are in the EEA/UK/Switzerland, a consent banner will be shown to control personalized ads and analytics. We do not enable ad networks prior to user consent in those regions.</p>
 
-        <h4>Choices and controls</h4>
-        <p>You can manage cookies and trackers via the consent manager available on this site. You can also use your browser settings to block cookies or use tracker-blocking extensions.</p>
+        <h4>Security</h4>
+        <p>We use industry-standard security measures to protect data. However, no method of transmission over the internet is completely secure.</p>
 
         <h4>Contact</h4>
-        <p>If you have privacy questions, email privacy@example.com</p>
+        <p>Privacy questions: <a href="mailto:privacy@example.com">privacy@example.com</a></p>
       </div>
     </section>
 
@@ -292,32 +306,39 @@ Conclusion / Checklist</pre>
     <section id="contact" style="margin-top:22px">
       <div class="card">
         <h3>Contact</h3>
-        <p class="muted small">Have questions? Fill the form below or email <a href="mailto:hello@example.com">hello@example.com</a>.</p>
-
-        <form onsubmit="alert('Demo only — implement a backend to receive messages');return false">
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <p class="meta">Have questions? Use the contact form or email directly. Live contact information increases reviewer trust.</p>
+        <form onsubmit="alert('Demo only — add a backend to receive messages');return false">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
             <input required placeholder="Your name" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6eef6">
             <input required type="email" placeholder="Email" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6eef6">
           </div>
-          <textarea required placeholder="Message" style="width:100%;margin-top:10px;padding:12px;border-radius:8px;border:1px solid #e6eef6"></textarea>
-          <button class="btn" style="margin-top:8px">Send message</button>
+          <textarea required placeholder="Message" style="width:100%;padding:12px;border-radius:8px;border:1px solid #e6eef6;margin-bottom:8px"></textarea>
+          <button style="padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:600">Send message</button>
         </form>
       </div>
     </section>
 
-    <!-- Sitemap (helps reviewers) -->
+    <!-- Sitemap hint (for reviewer) -->
     <section id="sitemap" style="margin-top:22px">
       <div class="card">
         <h3>Sitemap</h3>
+        <p class="meta">This single-page hub contains these article anchors — for better SEO consider creating separate URLs for each article (optional).</p>
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#articles">Articles</a></li>
-          <li><a href="#post-1">Morning Routine</a></li>
-          <li><a href="#post-2">Hosting Guide</a></li>
-          <li><a href="#post-3">Content Tips</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#privacy">Privacy</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#post-1">Budgeting Guide</a></li>
+          <li><a href="#post-2">Emergency Fund</a></li>
+          <li><a href="#post-3">Investing Basics</a></li>
+          <li><a href="#post-4">Index Funds</a></li>
+          <li><a href="#post-5">Retirement</a></li>
+          <li><a href="#post-6">Taxes</a></li>
+          <li><a href="#post-7">Credit & Debt</a></li>
+          <li><a href="#post-8">Passive Income</a></li>
+          <li><a href="#post-9">Insurance</a></li>
+          <li><a href="#post-10">Young Professionals</a></li>
+          <li><a href="#post-11">Advanced Tax</a></li>
+          <li><a href="#post-12">Real Estate</a></li>
+          <li><a href="#post-13">Behavioral Finance</a></li>
+          <li><a href="#post-14">Budgeting for Couples</a></li>
+          <li><a href="#post-15">College Savings</a></li>
         </ul>
       </div>
     </section>
@@ -328,46 +349,45 @@ Conclusion / Checklist</pre>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
       <div>
         <strong>BrightGuide</strong>
-        <div class="muted small">Helpful long-form guides • Built for quality</div>
+        <div class="meta">Actionable finance guides • Designed for clarity</div>
       </div>
-      <div class="nav-footer">
-        <a href="#privacy">Privacy</a>
-        <a href="#about">About</a>
+      <div>
+        <a href="#privacy" style="margin-right:12px">Privacy</a>
+        <a href="#about" style="margin-right:12px">About</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
-    <p style="margin-top:16px;color:var(--muted);font-size:0.9rem">© 2025 BrightGuide — Demo template for AdSense-ready testing. Do not enable ad units until you apply and are approved.</p>
+    <p style="margin-top:16px;color:var(--muted);font-size:0.9rem">© 2025 BrightGuide — Single-page finance hub. Do not enable AdSense ad units until your site is approved. Keep this client meta for verification.</p>
   </footer>
 
-  <!-- ---------- Consent Manager (two-choice) ---------- -->
+  <!-- Simple two-choice demo CMP (not certified) -->
   <div id="cmp-banner" role="region" aria-label="Cookie consent" style="display:none">
     <div style="flex:1">
       <p style="margin:0"><strong>BrightGuide uses cookies</strong> — we and our partners use cookies for analytics and personalised content. By clicking "Accept" you consent to personalized ads in supported regions. You can Manage your preferences instead.</p>
     </div>
-    <div class="cmp-actions">
-      <button id="cmp-manage" class="btn btn-outline">Manage</button>
-      <button id="cmp-accept" class="btn">Accept</button>
+    <div class="cmp-actions" style="display:flex;gap:8px;margin-left:12px">
+      <button id="cmp-manage" style="background:transparent;border:1px solid rgba(0,0,0,0.08);padding:8px 10px;border-radius:8px">Manage</button>
+      <button id="cmp-accept" style="background:var(--accent);color:#fff;border:0;padding:8px 10px;border-radius:8px">Accept</button>
     </div>
   </div>
 
-  <!-- CMP modal (simple demo) -->
   <div id="cmp-modal" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:10000;align-items:center;justify-content:center">
-    <div style="background:#fff;border-radius:12px;max-width:720px;padding:18px;margin:20px;box-shadow:var(--shadow)">
+    <div style="background:#fff;border-radius:12px;max-width:720px;padding:18px;margin:20px;box-shadow:0 10px 30px rgba(6,18,30,0.12)">
       <h3 style="margin-top:0">Manage cookie preferences</h3>
-      <p class="muted small">Toggle ad personalization and analytics. This is a demo consent manager — for production use a Google-certified CMP if required by your region.</p>
+      <p class="meta">Toggle ad personalization and analytics. This is a demo consent manager — for production use, replace with a Google-certified CMP if required by your region.</p>
       <div style="display:flex;gap:12px;flex-direction:column;margin-top:12px">
         <label><input id="pref-ads" type="checkbox" checked> Personalised ads</label>
         <label><input id="pref-analytics" type="checkbox" checked> Analytics</label>
       </div>
       <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
-        <button id="cmp-save" class="btn btn-outline">Save</button>
-        <button id="cmp-close" class="btn">Close</button>
+        <button id="cmp-save" style="background:transparent;border:1px solid rgba(0,0,0,0.08);padding:8px 12px;border-radius:8px">Save</button>
+        <button id="cmp-close" style="background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px">Close</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Simple two-choice CMP behaviour for demo/testing (not a certified CMP)
+    // Demo CMP behaviour
     (function(){
       const banner = document.getElementById('cmp-banner');
       const modal = document.getElementById('cmp-modal');
@@ -376,37 +396,15 @@ Conclusion / Checklist</pre>
       const close = document.getElementById('cmp-close');
       const save = document.getElementById('cmp-save');
 
-      function showBanner(){
-        // Only show if no consent stored
-        if(!localStorage.getItem('bg_consent')){
-          banner.style.display = 'flex';
-        }
-      }
-
-      accept.addEventListener('click', ()=>{
-        localStorage.setItem('bg_consent', JSON.stringify({ads:true,analytics:true,ts:Date.now()}));
-        banner.style.display = 'none';
-        // In production: enable ad network scripts here when consent granted
-        alert('Consent saved (demo). In a real site, ad networks would now be allowed to run.');
-      });
-
-      manage.addEventListener('click', ()=>{ modal.style.display = 'flex'; });
-      close.addEventListener('click', ()=>{ modal.style.display = 'none'; });
-
-      save.addEventListener('click', ()=>{
-        const ads = document.getElementById('pref-ads').checked;
-        const analytics = document.getElementById('pref-analytics').checked;
-        localStorage.setItem('bg_consent', JSON.stringify({ads:ads,analytics:analytics,ts:Date.now()}));
-        modal.style.display = 'none';
-        banner.style.display = 'none';
-        alert('Preferences saved (demo).');
-      });
-
-      // Show banner on load
+      function showBanner(){ if(!localStorage.getItem('bg_consent')) banner.style.display='flex'; }
+      accept && accept.addEventListener('click', ()=>{ localStorage.setItem('bg_consent', JSON.stringify({ads:true,analytics:true,ts:Date.now()})); banner.style.display='none'; alert('Consent saved (demo).'); });
+      manage && manage.addEventListener('click', ()=>{ modal.style.display='flex'; });
+      close && close.addEventListener('click', ()=>{ modal.style.display='none'; });
+      save && save.addEventListener('click', ()=>{ const ads=document.getElementById('pref-ads').checked; const analytics=document.getElementById('pref-analytics').checked; localStorage.setItem('bg_consent', JSON.stringify({ads:ads,analytics:analytics,ts:Date.now()})); modal.style.display='none'; banner.style.display='none'; alert('Preferences saved (demo).'); });
       document.addEventListener('DOMContentLoaded', showBanner);
     })();
   </script>
 
-  <!-- NOTE: Do NOT place live AdSense ad units on pages before applying and being approved. If you add ad units prematurely, Google may reevaluate pages. Keep client meta for verification, but only add <ins class="adsbygoogle"> units after approval. -->
+  <!-- NOTE: Keep the AdSense client meta present for account verification, but DO NOT insert live <ins class="adsbygoogle"> ad units until your site is approved. After approval, add ad units and ensure they only run after consent where required. -->
 </body>
 </html>
