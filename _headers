@@ -1,0 +1,35 @@
+# This file should be placed in your publish directory (e.g., /public/_headers)
+
+# ----------------------------------------------------------------
+# Caching Rules
+# ----------------------------------------------------------------
+
+# Cache all your self-hosted images for 1 year. The 'immutable' directive
+# tells the browser that this file will never change, preventing re-validation.
+/images/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/images/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/images/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/images/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache the favicon for 1 week.
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+# Do NOT cache your main HTML file. This ensures that users always
+# receive the latest content when they visit your site.
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# ----------------------------------------------------------------
+# Security Headers (Recommended)
+# ----------------------------------------------------------------
+
+/*
+  # Prevents your site from being loaded in an iframe.
+  X-Frame-Options: DENY
+  # Prevents browsers from trying to guess the content type.
+  X-Content-Type-Options: nosniff
