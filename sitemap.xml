@@ -10,38 +10,37 @@
 
   <!-- About Page -->
   <url>
-    <loc>https://srinathpuligaridev.tech/about</loc>
+    <loc>https://srinathpuligaridev.tech/about.html</loc>
     <lastmod>2025-08-30</lastmod>
     <priority>0.8</priority>
   </url>
 
   <!-- Contact Page -->
   <url>
-    <loc>https://srinathpuligaridev.tech/contact</loc>
+    <loc>https://srinathpuligaridev.tech/contact.html</loc>
     <lastmod>2025-08-30</lastmod>
     <priority>0.8</priority>
   </url>
 
   <!-- Privacy Policy Page -->
   <url>
-    <loc>https://srinathpuligaridev.tech/privacy</loc>
+    <loc>https://srinathpuligaridev.tech/privacy.html</loc>
     <lastmod>2025-08-30</lastmod>
     <priority>0.8</priority>
   </url>
 
-  <!-- Example Articles (replace with your real slugs/paths) -->
+  <!-- Example Articles (replace with real article file names) -->
   <url>
-    <loc>https://srinathpuligaridev.tech/articles/article-1</loc>
+    <loc>https://srinathpuligaridev.tech/article-1.html</loc>
     <lastmod>2025-08-30</lastmod>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://srinathpuligaridev.tech/articles/article-2</loc>
+    <loc>https://srinathpuligaridev.tech/article-2.html</loc>
     <lastmod>2025-08-30</lastmod>
     <priority>0.7</priority>
   </url>
 
   <!-- Add all 15 articles here in the same format -->
-
 </urlset>
